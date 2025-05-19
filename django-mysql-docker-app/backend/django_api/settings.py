@@ -1,13 +1,19 @@
+import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'productosdb',
-        'USER': 'user',
-        'PASSWORD': 'password',
-        'HOST': 'db',  # This should match the service name in docker-compose.yml
-        'PORT': '3306',
+        'NAME': os.environ.get('DATABASE_NAME', 'productodb'),
+        'USER': os.environ.get('DATABASE_USER', 'roco'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', '1234'),
+        'HOST': os.environ.get('DATABASE_HOST', 'db'),
+        'PORT': os.environ.get('DATABASE_PORT', '3306'),
     }
 }
+
+SECRET_KEY = os.environ.get('SECRET_KEY', '1234')
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
