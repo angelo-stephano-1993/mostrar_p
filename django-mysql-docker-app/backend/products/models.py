@@ -6,7 +6,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    imagen = models.ImageField(upload_to='img/',verbose_name='Imagen',null=True, default=None)
     def __str__(self):
         return self.name
 
